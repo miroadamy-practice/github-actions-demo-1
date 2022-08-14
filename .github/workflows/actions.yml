@@ -1,7 +1,8 @@
 name: Actions Workflow 
 
 on: 
-  issues:
+  repository_dispatch:
+    types: [on_demand_test]
 
 jobs: 
   run-github-actions: 
