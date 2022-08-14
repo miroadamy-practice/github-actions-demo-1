@@ -1,16 +1,9 @@
 name: Actions Workflow 
 
 on: 
-  pull_request:
-    types: [closed, assigned, opened, reopened]
-  issues:
-  issue_comment:
-    types: [created, deleted]
-  label:
-    types: [created, deleted]
-  release:
   schedule:
     - cron: '*/5 * * * *'
+    - cron: '0/3 * * * *'
 
 
 jobs: 
