@@ -10,8 +10,8 @@ on:
     types: [created, deleted]
   release:
   schedule:
-    - cron: 0/5 * * * *
-    
+    - cron: "*/5 * * * *"
+
 
 jobs: 
   run-github-actions: 
