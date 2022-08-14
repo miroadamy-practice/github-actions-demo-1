@@ -8,6 +8,8 @@ jobs:
   run-github-actions: 
     runs-on: ubuntu-latest
     steps:
+      - name: Payload Info
+        run: echo ${{ github.event.client_payload}}
       - name: List Files 
         run: |
           pwd
