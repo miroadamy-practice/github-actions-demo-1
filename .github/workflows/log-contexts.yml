@@ -2,8 +2,7 @@ name: Context testing
 on: 
   push:
     branches:
-      - chapter/03-17
-      - chapter/03-18
+      - chapter/03-1[7-9]
 jobs:
   functions: 
     runs-on: ubuntu-latest
@@ -18,16 +17,22 @@ jobs:
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
+        # this always runs
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
+        # next one will fail
       - name: Dump job context
-        run: echo '${{ toJSON(job) }}'
+        run: eccho '${{ toJSON(job) }}'
       - name: Dump steps context
+        # This runs on failure
+        if: failure()
         run: echo '${{ toJSON(steps) }}'
       - name: Dump runner context
         run: echo '${{ toJSON(runner) }}'
       - name: Dump strategy context
         run: echo '${{ toJSON(strategy) }}'
+        # The last one always runs
       - name: Dump matrix context
+        if: always()
         run: echo '${{ toJSON(matrix) }}'
