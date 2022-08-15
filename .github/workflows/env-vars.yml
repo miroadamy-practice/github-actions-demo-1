@@ -5,8 +5,9 @@ on:
     branches:
       - 'chapter/03*'
     
+# I have defined repo level secret    
 env: 
-  WF_ENV: Available to all jobs 
+  WF_ENV: ${{ secrets.REPO_SECRET_DEMO }}
 
 jobs: 
   log-env:
