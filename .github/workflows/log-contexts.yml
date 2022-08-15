@@ -3,8 +3,18 @@ on:
   push:
     branches:
       - chapter/03-17
-
+      - chapter/03-18
 jobs:
+  functions: 
+    runs-on: ubuntu-latest
+    steps:
+      - name: dump
+        run: |
+          echo ${{ contains( 'hello', '11' ) }}
+          echo ${{ startsWith( 'hello', 'he' ) }}
+          echo ${{ endsWith( 'hello', '1o' ) }}
+          echo ${{ format( 'Hello {0} {1} {2}', 'World', '!', '!' ) }}
+
   dump_contexts_to_log:
     runs-on: ubuntu-latest
     steps:
