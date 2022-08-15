@@ -22,6 +22,11 @@ jobs:
           echo "WF_ENV: ${WF_ENV}"
           echo "JOB_ENV: ${JOB_ENV}"
           echo "STEP_ENV: ${STEP_ENV}"
+      - name: Simple JS Action
+        id: greet-with-secret 
+        uses: actions/hello-world-javascript-action@v1
+        with: 
+          who-to-greet: ${WF_ENV}
   log-default-env: 
     runs-on: ubuntu-latest
     steps:
