@@ -19,7 +19,7 @@ jobs:
         env: 
           STEP_ENV: Available to only this step 
         run: |
-          echo "WF_ENV: ${WF_ENV}"
+          echo "WF_ENV: ${WF_ENV}" 
           echo "JOB_ENV: ${JOB_ENV}"
           echo "STEP_ENV: ${STEP_ENV}"
       - name: Use Action 
@@ -27,13 +27,16 @@ jobs:
         uses: actions/hello-world-javascript-action@v1
         with: 
           who-to-greet: ${{ secrets.REPO_SECRET_DEMO }}
+      - name: Checkout 
+        uses: actions/checkout@v1
       - name: Repeat
         id: repeat
         run: |
           echo $PWD
+          echo "WF_ENV: ${WF_ENV}" | tee revealed.txt
           ls -la
           bash ./repeater.sh ${{ secrets.REPO_SECRET_DEMO }} $WF_ENV
-          
+          cat ./revealed.txt
   log-default-env: 
     runs-on: ubuntu-latest
     steps:
