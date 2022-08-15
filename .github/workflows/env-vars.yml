@@ -26,7 +26,7 @@ jobs:
         id: greet-with-secret 
         uses: actions/hello-world-javascript-action@v1
         with: 
-          who-to-greet: ${WF_ENV}
+          who-to-greet: ${{ secrets.REPO_SECRET_DEMO }}
   log-default-env: 
     runs-on: ubuntu-latest
     steps:
