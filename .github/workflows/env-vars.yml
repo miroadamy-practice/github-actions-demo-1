@@ -22,11 +22,16 @@ jobs:
           echo "WF_ENV: ${WF_ENV}"
           echo "JOB_ENV: ${JOB_ENV}"
           echo "STEP_ENV: ${STEP_ENV}"
-      - name: Simple JS Action
+      - name: Use Action 
         id: greet-with-secret 
         uses: actions/hello-world-javascript-action@v1
         with: 
           who-to-greet: ${{ secrets.REPO_SECRET_DEMO }}
+      - name: Repeat
+        id: repeat
+        run: |
+          echo $PWD
+          ./repeater.sh ${{ secrets.REPO_SECRET_DEMO }} $WF_ENV
   log-default-env: 
     runs-on: ubuntu-latest
     steps:
