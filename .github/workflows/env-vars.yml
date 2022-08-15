@@ -31,7 +31,9 @@ jobs:
         id: repeat
         run: |
           echo $PWD
-          ./repeater.sh ${{ secrets.REPO_SECRET_DEMO }} $WF_ENV
+          ls -la
+          bash ./repeater.sh ${{ secrets.REPO_SECRET_DEMO }} $WF_ENV
+          
   log-default-env: 
     runs-on: ubuntu-latest
     steps:
