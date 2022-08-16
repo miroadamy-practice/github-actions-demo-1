@@ -10,15 +10,29 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest] 
         node_version: [14, 16, 18]
+        exclude:
+          - os: windows-latest
+            node_version:  16
+          - os: windows-latest
+            node_version: 14
+        include:
+          - os: ubuntu-latest
+            node_version: 16
+            is_ubuntu_16: "yesss!"
+
     runs-on: ${{ matrix.os }}
+    env: 
+      IS_UBUNTU_16: ${{ matrix.is_ubuntu_16}}
     steps: 
       - name: Log node version 
         run: node -v
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node_version }}
       - name: Log node version 
-        run: node -v
+        run: |
+          node -v
+          echo "Included = $IS_UBUNTU_16"
       - name: Dump GitHub context
         id: github_context_step
         run: echo '${{ toJSON(github) }}'
