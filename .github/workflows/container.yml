@@ -15,3 +15,12 @@ jobs:
         run: |
           node -v
           cat /etc/os-release
+  node-plain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log default node version
+        run: |
+          node -v
+          cat /etc/os-release
+
+
