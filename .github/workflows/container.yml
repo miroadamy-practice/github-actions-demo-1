@@ -1,0 +1,26 @@
+name: Container
+
+on:
+  push:
+    branches:
+      - chapter/04-24
+
+jobs:
+  node-docker:
+    runs-on: ubuntu-latest
+    container: 
+      image: node:16.16.0-alpine3.16
+    steps:
+      - name: Log node version  
+        run: |
+          node -v
+          cat /etc/os-release
+  node-plain:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log default node version
+        run: |
+          node -v
+          cat /etc/os-release
+
+
