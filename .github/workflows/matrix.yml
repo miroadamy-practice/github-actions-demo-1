@@ -10,8 +10,8 @@ jobs:
     steps: 
       - name: Log node version 
         run: node -v
-      - uses: actions/setup-node@V1
+      - uses: actions/setup-node@V3
         with:
-          node-version: 6
+          node-version: 14
       - name: Log node version 
         run: node -v
