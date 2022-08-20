@@ -20,7 +20,7 @@ jobs:
       - name: Check format
         run: |
           cd react-app
-          npm format:check
+          npm run format:check
       - name: Test
         run: |
           cd react-app
