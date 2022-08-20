@@ -2,6 +2,8 @@ tasks:
   - init: |
       cd $GITPOD_REPO_ROOT/react-app
       npm install # runs during prebuild
+      npm install --save-dev --save-exact prettier
+      npm install --global surge
     command: |
       cd $GITPOD_REPO_ROOT/react-app 
       npm start
