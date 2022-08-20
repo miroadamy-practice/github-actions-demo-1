@@ -6,6 +6,7 @@ tasks:
       cd $GITPOD_REPO_ROOT/react-app 
       npm start
   - command: |
+      cd $GITPOD_REPO_ROOT/react-app ß
       node --version
       npm --version
       npm list
