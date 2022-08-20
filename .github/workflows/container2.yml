@@ -2,8 +2,7 @@ name: Container
 on: 
   push:
     branches:
-      - chapter/04-27
-      - chapter/04-28
+      - chapter/04-2[789]
 
 jobs: 
   docker-steps:
@@ -31,7 +30,11 @@ jobs:
         with:
           entrypoint: ./script.sh
           args: "Some string"  
-
+      - name: send a slack message
+        uses: docker://technosophos/slack-notify
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "Hello slack"
 
 
   node-docker:
