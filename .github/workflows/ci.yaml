@@ -1,0 +1,47 @@
+name: CI 
+on:
+  pull_request:
+    branches: [develop]
+  push:
+    branches: [develop]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: use Node 16
+        uses: actions/setup-node@v3
+        with: 
+            node-version: "16"
+      - name: Install dependencies
+        run: |
+          cd react-app
+          npm ci 
+      - name: Check format
+        run: |
+          cd react-app
+          npm run format:check
+      - name: Test
+        run: |
+          cd react-app
+          npm test -- --coverage
+        env:
+          CI: true
+      - name: Build project
+        if: github.event_name == 'push'
+        run: npm run build
+      - name: Deploy to Staging
+        if: github.event_name == 'push'
+        run: npx surge --project ./build --domain instinctive-string.surge.sh
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+          
+
+
+        
+
+    
+          
