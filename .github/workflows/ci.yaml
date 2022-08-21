@@ -39,11 +39,22 @@ jobs:
           npm test -- --coverage
         env:
           CI: true
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v3
+        with: 
+          path: react-app/coverage
+          name: code-coverage
       - name: Build project
         if: github.event_name == 'push'
         run: |
           cd react-app 
           npm run build
+      - name: Upload build
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with: 
+          path: react-app/build
+          name: code-files
       - name: Deploy to Staging
         if: github.event_name == 'push'
         run: npx surge --project ./react-app/build --domain instinctive-string.surge.sh
