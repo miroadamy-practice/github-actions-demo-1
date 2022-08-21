@@ -30,15 +30,17 @@ jobs:
           CI: true
       - name: Build project
         if: github.event_name == 'push'
-        run: npm run build
+        run: |
+          cd react-app 
+          npm run build
       - name: Deploy to Staging
         if: github.event_name == 'push'
-        run: npx surge --project ./build --domain instinctive-string.surge.sh
+        run: npx surge --project ./react-app/build --domain instinctive-string.surge.sh
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
           SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
 
-          
+
 
 
         
