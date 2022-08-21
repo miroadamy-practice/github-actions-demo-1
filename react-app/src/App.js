@@ -15,7 +15,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React - Deploy 2022-08-21_13:32
         </a>
       </header>
     </div>
