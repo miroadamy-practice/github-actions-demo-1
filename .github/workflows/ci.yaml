@@ -1,0 +1,78 @@
+name: CI 
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: use Node 16
+        uses: actions/setup-node@v3
+        with: 
+            node-version: "16"
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - uses: actions/cache@v3
+        id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: |
+          cd react-app
+          npm ci 
+      - name: Check format
+        run: |
+          cd react-app
+          npm run format:check
+      - name: Test
+        run: |
+          cd react-app
+          npm test -- --coverage
+        env:
+          CI: true
+      - name: Upload test coverage
+        uses: actions/upload-artifact@v3
+        with: 
+          path: react-app/coverage
+          name: code-coverage
+      - name: Build project
+        if: github.event_name == 'push'
+        run: |
+          cd react-app 
+          npm run build
+      - name: Upload build
+        if: github.event_name == 'push'
+        uses: actions/upload-artifact@v3
+        with: 
+          path: react-app/build
+          name: code-files
+      - name: Create a release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          cd react-app
+          npx semantic-release
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Deploy to Staging
+        if: github.event_name == 'push'
+        run: npx surge --project ./react-app/build --domain instinctive-string.surge.sh
+        env:
+          SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+
+
+
+
+        
+
+    
+          
