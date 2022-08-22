@@ -68,8 +68,8 @@ jobs:
           npx semantic-release
         env:
           GITHUB_TOKEN: ${{ github.token }}
-      - name: Deploy to Staging
-        if: github.event_name == 'push'
+      - name: Deploy to Production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: npx surge --project ./react-app/build --domain instinctive-string.surge.sh
         env:
           SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
