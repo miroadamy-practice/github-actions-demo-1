@@ -60,8 +60,8 @@ jobs:
         run: |
           cd react-app
           npx semantic-release
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Deploy to Staging
         if: github.event_name == 'push'
         run: npx surge --project ./react-app/build --domain instinctive-string.surge.sh
