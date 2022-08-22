@@ -1,9 +1,9 @@
 name: CI 
 on:
   pull_request:
-    branches: [develop]
+    branches: [develop, main]
   push:
-    branches: [develop]
+    branches: [develop, main]
 
 jobs:
   build:
@@ -55,6 +55,13 @@ jobs:
         with: 
           path: react-app/build
           name: code-files
+      - name: Create a release
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          cd react-app
+          npx semantic-release
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Deploy to Staging
         if: github.event_name == 'push'
         run: npx surge --project ./react-app/build --domain instinctive-string.surge.sh
