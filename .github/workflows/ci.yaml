@@ -56,7 +56,7 @@ jobs:
           path: react-app/build
           name: code-files
       - name: ZIP Assets 
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
           cd react-app
           zip -r build.zip ./build
