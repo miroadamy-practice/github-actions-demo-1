@@ -13,4 +13,4 @@ jobs:
         uses: docker://technosophos/slack-notify
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: "Release {{ github.event.release.tag_name }} is out, <{{ github.event.release.html_url}}|check it out now.> - triggered by $GITHUB_EVENT_NAME from $GITHUB_REPOSITORY."
+          SLACK_MESSAGE: "Release {{ github.event.release.tag_name }} is out, See {{ github.event.release.html_url }} "
