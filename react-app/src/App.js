@@ -1,8 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
+function App() { return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -18,8 +17,6 @@ function App() {
           Learn React - Deploy 2022-08-23_22:54
         </a>
       </header>
-    </div>
-  );
-}
+    </div>);}
 
 export default App;
