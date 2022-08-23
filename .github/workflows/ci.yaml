@@ -30,6 +30,7 @@ jobs:
           cd react-app
           npm ci 
       - name: Check format
+        continue-on-error: true
         run: |
           cd react-app
           npm run format:check
