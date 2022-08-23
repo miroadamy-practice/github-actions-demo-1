@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Slack Message
-        run: |
-          curl -X POST -H 'Content-type: application/json'
-           -- data '{"text":"New issue created: <${{ github.event.issue.html_url }}|${{ github.event.issue.title }}.>"}' 
-           ${{ secrets.SLACK_WEBHOOK }}
+        uses: docker://technosophos/slack-notify
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "New issue created: <${{ github.event.issue.html_url }}|${{ github.event.issue.title }}.>"
