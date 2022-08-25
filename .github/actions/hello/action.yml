@@ -1,0 +1,16 @@
+name: Hello World
+author: Miro
+description: Following the course
+inputs:
+  whom-to-greet:
+    description: "Whom to greet"
+    required: true
+    default: World
+outputs:
+  time:
+    description: 'The greeting time'
+runs:
+  using: "node16"
+  main: index.js
+
+
