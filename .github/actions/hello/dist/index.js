@@ -422,7 +422,7 @@ exports.issueCommand = issueCommand;
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
 const core = __webpack_require__(470);
-const githb = __webpack_require__(469);
+const github = __webpack_require__(469);
 
 // lets simulate an error => on GH action, it will seem to be successful
 try {

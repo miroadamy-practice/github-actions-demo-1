@@ -1,5 +1,5 @@
 const core = require('@actions/core');
-const githb = require('@actions/github');
+const github = require('@actions/github');
 
 // lets simulate an error => on GH action, it will seem to be successful
 try {
