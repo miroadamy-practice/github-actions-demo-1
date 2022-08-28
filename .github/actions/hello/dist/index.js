@@ -436,7 +436,7 @@ try {
 
     console.log.log(JSON.stringify(github, null, '\t'));
 } catch (error) {
-    core.setFailed('I failed');
+    core.setFailed(error.message);
 }
 
 /***/ }),
