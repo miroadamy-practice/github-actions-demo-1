@@ -16,3 +16,5 @@ jobs:
           whom-to-greet: 'Miro'
       - run: |
           echo "Time ${{ steps.hello.outputs.time}}"
+          # The following variable was set by action
+          echo $HELLO
