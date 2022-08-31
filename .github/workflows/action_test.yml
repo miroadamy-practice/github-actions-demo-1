@@ -29,5 +29,5 @@ jobs:
             for the test issue
           assignees: |
             miroadamy
-        - run: |
+      - run: |
             echo ${{ steps.issuetest.outputs.issue}}
