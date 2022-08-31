@@ -23,7 +23,7 @@ jobs:
         uses: ./.github/actions/issue
         with:
           token: {{ secrets.GITHUB_TOKEN }}
-          title: Issue Title
+          title: 'Issue Title'
           body: |
             This is body
             for the test issue
