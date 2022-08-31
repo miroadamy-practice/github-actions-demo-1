@@ -18,3 +18,16 @@ jobs:
           echo "Time ${{ steps.hello.outputs.time}}"
           # The following variable was set by action
           echo $HELLO
+      - name: issue test
+        id: issuetest
+        uses: ./.github/actions/issue
+        with:
+          token: {{ secrets.GITHUB_TOKEN }}
+          title: Issue Title
+          body: |
+            This is body
+            for the test issue
+          assignees: |
+            miroadamy
+        - run: |
+            echo ${{ steps.issuetest.outputs.issue}}
