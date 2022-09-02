@@ -15,5 +15,5 @@ runs:
   env: 
     keyvaluename: valuevalue
   args:
-    - ${{ inputs.who-to-greet}}
+    - ${{ inputs.whom-to-greet}}
 
