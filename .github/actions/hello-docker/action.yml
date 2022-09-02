@@ -1,0 +1,19 @@
+name: Hello World In Docker
+author: Miro
+description: Following the course
+inputs:
+  whom-to-greet:
+    description: "Whom to greet"
+    required: true
+    default: World
+outputs:
+  time:
+    description: 'The greeting time'
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env: 
+    keyvaluename: valuevalue
+  args:
+    - ${{ inputs.who-to-greet}}
+
