@@ -32,9 +32,9 @@ jobs:
       - run: |
             echo ${{ steps.issuetest.outputs.issue}}
       - uses: ./.github/actions/hello-docker
-        id: hello
+        id: hellodocker
         with:
           who-to-greet: "Dockerized World"
       - run: |
-          echo "Time: ${{ steps.hello.outputs.time }}"
+          echo "Time: ${{ steps.hellodocker.outputs.time }}"
           echo $HELLO
